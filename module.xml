@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+	<name>Languages</name>
+	<version>16.12.1</version>
+	<type>user</type>
+	<defaultcat>Server Admin</defaultcat>
+	<desc>This module enables you to change add and remove languages for the user interface.</desc>
+	<authorname>Rodrigo Sepúlveda Heerwagen</authorname>
+	<authoremail>rs@burbuja.cl</authoremail>
+	<authorurl>http://burbuja.cl/</authorurl>
+	<updateurl>http://sentora.burbuja.cl/languages.xml</updateurl>
+</module>

@@ -1,0 +1,81 @@
+<div class="zmodule_content panel" id="zmodule_header_<@ ModuleName @>">
+	<div class="panel-heading">
+		<img src="<@ ModuleIcon @>" width="35" height="35" border="0" alt="<@ ModuleName @>">
+		<div class="zmodule_title">
+			<@ ModuleName @>
+		</div>
+		<div class="zmodule_desc" id="zmodule_desc_<@ ModuleName @>"><@ ModuleDesc @></div>
+	</div>
+
+	<!--@ Result @-->
+
+	<% if isDeleteLanguage %>
+	<div class="zform_wrapper alert alert-danger">
+		<h2><: Delete :>: <@ CurrentLanguage @>?</h2>
+		<p><: Please confirm that you want to delete this language. :></p>
+		<form action="./?module=languages&action=DeleteLanguage" method="post">
+			<table class="none" cellpadding="0" cellspacing="0">
+				<tr>
+					<td colspan="2" align="right">
+						<input type="hidden" name="inDelete" value="<@ CurrentID @>">
+						<button class="delete btn btn-danger" type="submit" ><: Delete :></button>
+						<button class="btn btn-default" type="button" onclick="window.location.href='./?module=languages';return false;"><: Cancel :></button>
+					</td>
+				</tr>
+			</table>
+			<@ CSFR_Tag @>
+		</form>
+	</div>
+	<% endif %>
+
+<div class="zgrid_wrapper">
+	<h2><: Current languages :></h2>
+	<form action="./?module=languages&action=ConfirmDeleteLanguage" method="post">
+		<table class="table table-striped">
+			<tr>
+				<th><: Language code :></th>
+				<th><: Language name :></th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>en</td>
+				<td>English</td>
+				<td>&nbsp;</td>
+			</tr>
+			<% if LocalLangList %>
+			<% loop LocalLangList %>
+			<tr>
+				<td><& code &></td>
+				<td><& name &></td>
+				<td><button class="delete btn btn-danger" type="submit" id="button" name="inDelete_<& code &>" id="inDelete_<& code &>" value="inDelete_<& code &>"><: Delete :></button></td>
+			</tr>
+			<% endloop %>
+			<% endif %>
+		</table>
+		<@ CSFR_Tag @>
+	</form>
+</div>
+
+	<% if isAddLanguage %>
+	<div class="zform_wrapper">
+	<h2><: Install a new language :></h2>
+		<form action="./?module=languages&action=InstallLanguage" method="post">
+			<table class="table table-striped">
+				<tr>
+					<th><: Choose Language :>:</th>
+					<td>
+						<select name="inLanguage" id="inLanguage" style="min-width:85px;">
+							<% loop RemoteLangList %>
+							<option value="<& language &>" <& selected &>><& language &></option>
+							<% endloop %>
+						</select>					
+					</td>
+					<td><button class="button-loader btn btn-primary" type="submit" name="submit"><: Install! :></button></td>
+				</tr>
+			</table>
+			<@ CSFR_Tag @>
+		</form>
+	</div>
+	<% endif %>
+</div>
